@@ -5,12 +5,6 @@ from sentence_transformers import SentenceTransformer
 import os
 import ollama
 
-# ollama = (api_key="30f9d1cc57d84e2db83c5f8d76d85383.JKJZCH3nS9uKDZ2kPPnA9FVw")
-# from google import genai
-
-# # client = genai.Client()
-# gemini_client = genai.Client(api_key="AIzaSyBnU8VYnjXlVBT_6KajJRmypLk4tBIM5jU")
-# print(dir(client))
 client = chromadb.Client()
 collection_name = "odoo_modules"
 
@@ -53,23 +47,6 @@ while True:
         )
 
     context_text = "\n\n".join(results["documents"][0])
-
-    # prompt = f"""
-    # You are an expert Odoo consultant. Use the following module information to answer the user's question in clear language.
-
-    # Module data:
-    # {context_text}
-
-    # User question: {query}
-
-    # Answer:
-    # """
-
-    # response = gemini_client.models.generate_content(
-    # model="gemini-2.0-flash",
-    # contents=prompt
-    # )
-    # answer = response.text
 
     response = ollama.chat(
         model="llama3",
